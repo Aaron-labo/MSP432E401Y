@@ -1,0 +1,43 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --board "/ti/boards/MSP_EXP432E401Y" --product "simplelink_msp432e4_sdk@4.20.00.12"
+ * @versions {"tool":"1.9.0+2015","templates":null}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const RTOS = scripting.addModule("/ti/drivers/RTOS");
+const LED  = scripting.addModule("/ti/drivers/apps/LED", {}, false);
+const LED1 = LED.addInstance();
+const LED2 = LED.addInstance();
+const LED3 = LED.addInstance();
+const LED4 = LED.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+RTOS.name = "NoRTOS";
+
+LED1.$name     = "CONFIG_LED_0";
+LED1.$hardware = system.deviceData.board.components.D1;
+
+LED2.$name     = "CONFIG_LED_1";
+LED2.$hardware = system.deviceData.board.components.D2;
+
+LED3.$name     = "CONFIG_LED_2";
+LED3.$hardware = system.deviceData.board.components.D3;
+
+LED4.$name     = "CONFIG_LED_3";
+LED4.$hardware = system.deviceData.board.components.D4;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+LED1.gpioPin.gpioPin.$suggestSolution = "expansion.87";
+LED2.gpioPin.gpioPin.$suggestSolution = "expansion.85";
+LED3.gpioPin.gpioPin.$suggestSolution = "expansion.64";
+LED4.gpioPin.gpioPin.$suggestSolution = "expansion.66";
